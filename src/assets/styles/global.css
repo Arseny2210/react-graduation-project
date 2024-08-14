@@ -1,0 +1,77 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: #262a2f;
+}
+
+body {
+	max-width: 1440px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+section,
+header,
+footer {
+	padding: 20px 0px 20px 0px;
+}
+
+/* Header */
+header nav a.navbar-brand {
+	cursor: pointer;
+	color: #ff5533;
+	font-weight: 500;
+}
+
+header nav a.navbar-brand:hover {
+	color: white;
+}
+
+header nav input::placeholder {
+	color: #8a8a8a;
+	font-weight: 500;
+}
+
+header nav button.btn {
+	background-color: #ff5533;
+	color: white;
+	font-weight: 500;
+}
+
+/* Section */
+section div.img-wrap {
+	position: relative;
+	/* margin: 0 auto; */
+	border-radius: 50%;
+	width: 65px;
+	height: 65px;
+	overflow: hidden;
+}
+
+section div.img-wrap::after {
+	content: '';
+	position: absolute;
+	z-index: 9999;
+	left: 0px;
+	border-radius: 50%;
+	width: 65px;
+	height: 65px;
+	background: #c4c4c4;
+	opacity: 0.5;
+}
+
+section div.img-wrap img {
+	z-index: 3;
+	position: absolute;
+	background-repeat: no-repeat;
+	left: -25px;
+}
+
+section div.info-wrap {
+	padding-left: 15px;
+}
+
+section div.info-wrap a {
+	color: #ff5533;
+}
