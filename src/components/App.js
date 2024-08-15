@@ -12,7 +12,7 @@ function App() {
 				setDataUsers(arr)
 			})
 	}, [])
-	console.log(dataUsers)
+
 	return (
 		<div className='wrapper'>
 			<Header />
@@ -20,7 +20,9 @@ function App() {
 				<div className='container-fluid '>
 					<div className='row g-2 text-white'>
 						{dataUsers.length ? (
-							dataUsers.map(data => <ListUsers key={data.id} data={data} />)
+							dataUsers.map(data => (
+								<ListUsers key={data.id} data={data} resp={data.repos_url} />
+							))
 						) : (
 							<p>Пользователей нет</p>
 						)}
