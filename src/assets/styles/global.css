@@ -35,8 +35,13 @@ header nav input::placeholder {
 
 header nav button.btn {
 	background-color: #ff5533;
-	color: white;
+	color: #c4c4c4;
 	font-weight: 500;
+}
+
+header nav button.btn:hover {
+	background-color: #ff5533;
+	color: white;
 }
 
 /* Section */

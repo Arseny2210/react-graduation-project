@@ -1,0 +1,80 @@
+/* section // img and text*/
+header nav button.btn {
+	background-color: #ff5533;
+}
+section div.wrap-img {
+	position: relative;
+	margin: 0 auto;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+}
+
+section div.wrap-img::after {
+	content: '';
+	position: absolute;
+	z-index: 9999;
+	left: 0px;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	background: #c4c4c4;
+	opacity: 0.5;
+}
+
+section div.wrap-img img {
+	z-index: 3;
+	position: absolute;
+	left: -55px;
+	top: 0px;
+}
+
+section div.wrap-info a {
+	color: #ff5533;
+	text-decoration: none;
+}
+
+section div.wrap-info {
+	font-size: 27px;
+	font-weight: 500;
+	color: white;
+}
+
+section div.wrap-info span {
+	color: #ff5533;
+	font-weight: 500;
+}
+
+/* section // main-info-block // main-text */
+section .main-text {
+	color: white;
+	font-weight: 500;
+}
+
+section .main-text a {
+	color: #ff5533;
+}
+
+section .wrap-section-info a {
+	color: #ff5533;
+}
+
+section .main-info-block .block-info {
+	border: 1px solid #e5e5e5;
+	max-width: 650px;
+	width: 100%;
+	margin-bottom: 35px;
+	border-radius: 10px;
+	color: white;
+}
+
+section .main-info-block .block-info .wrap-section-info {
+	padding-top: 13px;
+	padding-left: 15px;
+	border-radius: 10px;
+	overflow: hidden;
+	font-size: 16px;
+	font-weight: 500;
+	color: white;
+}

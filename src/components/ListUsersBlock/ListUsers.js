@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react'
-
+import { Link } from 'react-router-dom'
 export function ListUsers({ data, resp }) {
 	const [reposUrl, setReposUrl] = useState([])
 
 	useEffect(() => {
-		fetch(resp)
+		fetch(resp, {
+			method: 'GET',
+			headers: {
+				Authorization:
+					'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',
+			},
+		})
 			.then(res => res.json())
 			.then(repos => {
 				setReposUrl(repos)
 			})
 	}, [])
+
 	return (
 		<div className='col-12 col-sm-6 col-lg-4'>
 			<div className='p-3 d-flex felx-row align-items-center pl-2'>
@@ -18,8 +25,8 @@ export function ListUsers({ data, resp }) {
 				</div>
 				<div className='info-wrap'>
 					<div>
-						<a href='#'>{data.login}</a>,{' '}
-						{reposUrl.length ? 0 : reposUrl.length} репозиториев
+						<Link to={`/user/${data.id}`}>{data.login}</Link>
+						{reposUrl.length} репозиториев
 					</div>
 					<div>
 						<a href={data.organizations_url}>Название организации</a>
