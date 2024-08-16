@@ -6,7 +6,7 @@ export function UserPage() {
 	const [user, setUser] = useState()
 
 	const { id } = useParams()
-
+	// 123123123
 	useEffect(() => {
 		const headers = {
 			Authorization:
