@@ -21,7 +21,6 @@ export function UserPage() {
 			.then(res => res.json())
 			.then(dataUser => setUser(dataUser))
 	}, [id])
-	console.log(id)
 	if (!user) {
 		return 'Загрузка...'
 	}
