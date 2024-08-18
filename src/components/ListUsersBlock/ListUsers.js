@@ -16,7 +16,7 @@ export function ListUsers({ data, resp }) {
 				setReposUrl(repos)
 			})
 	}, [])
-	// 123123123
+
 	return (
 		<div className='col-12 col-sm-6 col-lg-4'>
 			<div className='p-3 d-flex felx-row align-items-center pl-2'>
@@ -25,8 +25,8 @@ export function ListUsers({ data, resp }) {
 				</div>
 				<div className='info-wrap'>
 					<div>
-						<Link to={`/user/${data.id}`}>{data.login}</Link>
-						{reposUrl.length} репозиториев
+						<Link to={`/user/${data.id}`}>{data.login}</Link> {reposUrl.length}{' '}
+						репозиториев
 					</div>
 					<div>
 						<a href={data.organizations_url}>Название организации</a>

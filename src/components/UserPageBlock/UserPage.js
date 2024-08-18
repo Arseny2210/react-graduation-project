@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { UserInfoContext } from '../App'
+import { MainInfoUserPage } from './MainInfoUserPage'
 import './UserPageBlock.css'
-
 export function UserPage() {
 	const [user, setUser] = useState()
-
+	const [dataUserPage, setDataUserPage] = useState([])
 	const { id } = useParams()
-	// 123123123
+
+	const { dataUsers } = useContext(UserInfoContext)
+
+	// переход на юезра с главной страницы
 	useEffect(() => {
 		const headers = {
 			Authorization:
@@ -21,9 +25,23 @@ export function UserPage() {
 			.then(res => res.json())
 			.then(dataUser => setUser(dataUser))
 	}, [id])
+
+	// прохожусь map'ом по всем юзерам из контекста и сравниваю id
+	useEffect(() => {
+		dataUsers.map(user => {
+			if (id == user.id) {
+				setDataUserPage(user)
+			}
+		})
+	}, [dataUsers])
+
 	if (!user) {
 		return 'Загрузка...'
 	}
+	if (!dataUserPage) {
+		return 'Загрузка...'
+	}
+
 	return (
 		<>
 			<section>
@@ -31,25 +49,34 @@ export function UserPage() {
 					<div className='row p-3 d-flex felx-row align-items-center justify-content-center justify-content-sm-around'>
 						<div className='col-12 col-sm-3 text-center'>
 							<div className='wrap-img'>
-								<img src='img/1.png' width='250px' height='378px' alt='' />
+								<img
+									src={dataUserPage.avatar_url}
+									width='250px'
+									height='378px'
+									alt=''
+								/>
 							</div>
 						</div>
 						<div className='col-12 col-sm-9 ps-5 wrap-info text-start'>
 							<div>
-								CHRIS WANSTRATH, <a href='#'>defunct {id}</a>
+								{user.name ? user.name : 'Нет имени'},
+								<a href='#'>
+									&ensp;
+									{dataUserPage.login ? dataUserPage.login : 'Нет логина'}
+								</a>
 							</div>
 							<div>
-								<span>21.3k</span> подписчиков · <span>210</span> подписок ·
-								<span>http://chriswanstrath.com/</span>
+								<span>{user.followers ? user.followers : '0'}</span> подписчиков
+								· <span>{user.following ? user.following : '0'}</span> подписок
+								· <a href='#'>{dataUserPage.repos_url}</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-
 			<section>
 				<div className='container-fluid'>
-					<div className='main-text row justify-content-sm-between text-center'>
+					<div className='main-text row justify-content-sm-between text-center mb-4'>
 						<div className='col text-lg-start'>
 							<h1>РЕПОЗИТОРИИ</h1>
 						</div>
@@ -57,46 +84,7 @@ export function UserPage() {
 							<a href=''>все репозитории</a>
 						</div>
 					</div>
-					<div className='main-info-block'>
-						<div className='d-flex justify-content-sm-around flex-wrap'>
-							<div className='block-info'>
-								<div className='wrap-section-info'>
-									<a href=''>body_matcher</a>
-									<p>Simplify your view testing. Forget assert_select.</p>
-								</div>
-							</div>
-							<div className='block-info'>
-								<div className='wrap-section-info'>
-									<a href=''>body_matcher</a>
-									<p>Simplify your view testing. Forget assert_select.</p>
-								</div>
-							</div>
-							<div className='block-info'>
-								<div className='wrap-section-info'>
-									<a href=''>body_matcher</a>
-									<p>Simplify your view testing. Forget assert_select.</p>
-								</div>
-							</div>
-							<div className='block-info'>
-								<div className='wrap-section-info'>
-									<a href=''>body_matcher</a>
-									<p>Simplify your view testing. Forget assert_select.</p>
-								</div>
-							</div>
-							<div className='block-info'>
-								<div className='wrap-section-info'>
-									<a href=''>body_matcher</a>
-									<p>Simplify your view testing. Forget assert_select.</p>
-								</div>
-							</div>
-							<div className='block-info'>
-								<div className='wrap-section-info'>
-									<a href=''>body_matcher</a>
-									<p>Simplify your view testing. Forget assert_select.</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					<MainInfoUserPage dataUserPage={dataUserPage.repos_url} />
 				</div>
 			</section>
 		</>
