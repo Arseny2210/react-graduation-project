@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Home } from '../pages/Home'
 import { NotFound } from '../pages/NotFound'
+import { Search } from '../pages/Search'
 import { User } from '../pages/User'
 import { Header } from './Header'
 
@@ -11,16 +12,13 @@ export const UserInfoContext = createContext()
 
 function App() {
 	const [dataUsers, setDataUsers] = useState([])
+	const [searchValue, setSearchValue] = useState('')
 
 	useEffect(() => {
-		const headers = {
-			Authorization:
-				'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',
-		}
-		fetch('https://api.github.com/users', {
+		fetch(`https://api.github.com/users`, {
 			method: 'GET',
 			headers: {
-				Authorization: { headers },
+				Authorization: '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',
 			},
 		})
 			.then(res => res.json())
@@ -31,13 +29,16 @@ function App() {
 
 	return (
 		<div className='wrapper'>
-			<UserInfoContext.Provider value={{ dataUsers }}>
+			<UserInfoContext.Provider
+				value={{ dataUsers, searchValue, setSearchValue }}
+			>
 				<Header />
 				<section>
 					<div className='container-fluid '>
 						<Routes>
-							<Route path='/' element={<Home />} />
+							<Route path='/' element={<Home searchValue={searchValue} />} />
 							<Route path='/user/:id' element={<User />} />
+							<Route path='/search/:login' element={<Search />} />
 							<Route path='*' element={<NotFound />} />
 						</Routes>
 					</div>

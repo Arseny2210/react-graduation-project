@@ -10,12 +10,7 @@ export function Home() {
 			<div className='row g-2 text-white'>
 				{dataUsers.length ? (
 					dataUsers.map(data => (
-						<ListUsers
-							key={data.id}
-							data={data}
-							resp={data.repos_url}
-							// orgName={data.organizations_url}
-						/>
+						<ListUsers key={data.id} data={data} resp={data.repos_url} />
 					))
 				) : (
 					<p>Пользователей нет</p>

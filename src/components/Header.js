@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
+import { SearchInput } from './SearchBlock/SearchInput'
+
 export function Header() {
-	// Сделать Header для каждой страницы
 	return (
 		<header>
 			<nav className='navbar'>
@@ -8,17 +9,7 @@ export function Header() {
 					<Link to={'/'} className='navbar-brand'>
 						ПОЛЬЗОВАТЕЛИ ГИТХАБ
 					</Link>
-					<form className='d-flex' role='search'>
-						<input
-							className='form-control me-2'
-							type='search'
-							placeholder='Поиск пользователя'
-							aria-label='Search'
-						/>
-						<button className='btn' type='submit'>
-							Найти
-						</button>
-					</form>
+					<SearchInput />
 				</div>
 			</nav>
 		</header>

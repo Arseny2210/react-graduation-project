@@ -13,8 +13,7 @@ export function UserPage() {
 	// переход на юезра с главной страницы
 	useEffect(() => {
 		const headers = {
-			Authorization:
-				'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',
+			Authorization: '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',
 		}
 		fetch('https://api.github.com/users/' + id, {
 			method: 'GET',
