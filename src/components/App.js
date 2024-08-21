@@ -24,6 +24,7 @@ function App() {
 			.then(arr => {
 				setDataUsers(arr)
 			})
+			.catch(err => alert('ошибка запроса на сервер, попобуйте позднее'))
 	}, [])
 
 	return (

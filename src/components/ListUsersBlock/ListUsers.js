@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-export function ListUsers({ data, resp }) {
+export function ListUsers({ data, resp, orgName }) {
 	const [reposUrl, setReposUrl] = useState([])
+	const [organiz, setOrganiz] = useState([])
 
 	useEffect(() => {
 		fetch(resp, {
@@ -16,6 +17,19 @@ export function ListUsers({ data, resp }) {
 			})
 	}, [])
 
+	useEffect(() => {
+		fetch(orgName, {
+			method: 'GET',
+			headers: {
+				Authorization: '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',
+			},
+		})
+			.then(res => res.json())
+			.then(org => {
+				setOrganiz(org)
+			})
+	}, [])
+
 	return (
 		<div className='col-12 col-sm-6 col-lg-4'>
 			<div className='p-3 d-flex felx-row align-items-center pl-2'>
@@ -27,8 +41,15 @@ export function ListUsers({ data, resp }) {
 						<Link to={`/user/${data.id}`}>{data.login}</Link> {reposUrl.length}{' '}
 						репозиториев
 					</div>
+
 					<div>
-						<a href={data.organizations_url}>Название организации</a>
+						{organiz.length != 0
+							? organiz.slice(0, 3).map(name => (
+									<span key={name.id} href={data.organizations_url}>
+										@{name.login}{' '}
+									</span>
+							  ))
+							: 'Нет организации'}
 					</div>
 				</div>
 			</div>
