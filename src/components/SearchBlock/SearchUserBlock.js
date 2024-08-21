@@ -1,24 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 export function SearchUserBlock({ data, resp }) {
 	const [repozitores, setRepozitores] = useState([])
-	const [dataPage, setDataPage] = useState([])
-
-	const { login } = useParams()
-
-	useEffect(() => {
-		fetch(`https://api.github.com/search/` + login, {
-			method: 'GET',
-			headers: {
-				Authorization: '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',
-			},
-		})
-			.then(res => res.json())
-			.then(arr => {
-				setDataPage(arr)
-			})
-	}, [])
 
 	useEffect(() => {
 		fetch(resp, {
@@ -34,26 +17,22 @@ export function SearchUserBlock({ data, resp }) {
 			})
 	}, [])
 
-	console.log(dataPage)
-
 	return (
 		<>
 			<div className='col-12 col-sm-6 col-lg-4'>
 				<div className='p-3 d-flex felx-row align-items-center pl-2'>
 					<div className='img-wrap'>
-						<img
-							src={dataPage.avatar_url}
-							width='109px'
-							height='165px'
-							alt=''
-						/>
+						<img src={data.avatar_url} width='109px' height='165px' alt='' />
 					</div>
 					<div className='info-wrap'>
 						<div>
-							<a href='#'>{dataPage.login}</a> {repozitores.length} репозиториев
+							<Link href='#' to={`/user/${data.id}`}>
+								{data.login}
+							</Link>{' '}
+							{repozitores.length} репозиториев
 						</div>
 						<div>
-							<a href={dataPage.organizations_url}>Название организации</a>
+							<a href={data.organizations_url}>Название организации</a>
 						</div>
 					</div>
 				</div>

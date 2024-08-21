@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { UserInfoContext } from '../components/App'
 import { SearchUserBlock } from '../components/SearchBlock/SearchUserBlock'
+import { NotFound } from './NotFound'
 
 export function Search() {
 	const { dataUsers, searchValue } = useContext(UserInfoContext)
@@ -16,7 +17,6 @@ export function Search() {
 		.map(data => (
 			<SearchUserBlock key={data.id} data={data} resp={data.repos_url} />
 		))
-
 	return (
 		<>
 			<section>
@@ -25,7 +25,7 @@ export function Search() {
 						ПОЛЬЗОВАТЕЛИ ПО ЗАПРОСУ "{searchValue.toUpperCase()}"
 					</h1>
 					<div className='row g-2 text-white'>
-						{dataUsers.length ? searchUser : <p>Пользователей нет</p>}
+						{dataUsers.length ? searchUser : <NotFound />}
 					</div>
 				</div>
 			</section>

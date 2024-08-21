@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom'
 import { UserInfoContext } from '../App'
 import { MainInfoUserPage } from './MainInfoUserPage'
 import './UserPageBlock.css'
+
 export function UserPage() {
 	const [user, setUser] = useState()
 	const [dataUserPage, setDataUserPage] = useState([])
 	const { id } = useParams()
 
 	const { dataUsers } = useContext(UserInfoContext)
-
 	// переход на юезра с главной страницы
 	useEffect(() => {
 		const headers = {

@@ -13,7 +13,6 @@ export const UserInfoContext = createContext()
 function App() {
 	const [dataUsers, setDataUsers] = useState([])
 	const [searchValue, setSearchValue] = useState('')
-
 	useEffect(() => {
 		fetch(`https://api.github.com/users`, {
 			method: 'GET',
