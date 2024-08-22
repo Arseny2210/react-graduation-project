@@ -16,7 +16,7 @@ export function SearchUserBlock({ data, resp }) {
 				setRepozitores(repos)
 			})
 	}, [])
-
+	console.log(resp)
 	return (
 		<>
 			<div className='col-12 col-sm-6 col-lg-4'>

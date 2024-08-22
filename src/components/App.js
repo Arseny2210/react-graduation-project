@@ -13,19 +13,39 @@ export const UserInfoContext = createContext()
 function App() {
 	const [dataUsers, setDataUsers] = useState([])
 	const [searchValue, setSearchValue] = useState('')
+	const [users, setUsers] = useState([])
+
 	useEffect(() => {
-		fetch(`https://api.github.com/users`, {
+		fetch('https://api.github.com/users', {
 			method: 'GET',
 			headers: {
 				Authorization: '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',
 			},
 		})
 			.then(res => res.json())
-			.then(arr => {
-				setDataUsers(arr)
+			.then(data => {
+				const dataUsers = data.map(user => {
+					return user.url
+				})
+				return dataUsers
 			})
+			.then(dataUsers => {
+				return Promise.all(
+					dataUsers.map(async url => {
+						return await fetch(url, {
+							method: 'GET',
+							headers: {
+								Authorization: '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',
+							},
+						}).then(res => res.json())
+					})
+				)
+			})
+			.then(data => setDataUsers(data))
 			.catch(err => alert('ошибка запроса на сервер, попобуйте позднее'))
 	}, [])
+
+	console.log(dataUsers)
 
 	return (
 		<div className='wrapper'>

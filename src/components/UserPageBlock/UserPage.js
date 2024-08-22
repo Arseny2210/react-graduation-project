@@ -40,7 +40,7 @@ export function UserPage() {
 	if (!dataUserPage) {
 		return 'Загрузка...'
 	}
-
+	console.log(dataUserPage)
 	return (
 		<>
 			<section>
@@ -58,16 +58,21 @@ export function UserPage() {
 						</div>
 						<div className='col-12 col-sm-9 ps-5 wrap-info text-start'>
 							<div>
-								{user.name ? user.name : 'Нет имени'},
+								{dataUserPage.name ? dataUserPage.name : 'Нет имени'},
 								<a href='#'>
 									&ensp;
 									{dataUserPage.login ? dataUserPage.login : 'Нет логина'}
 								</a>
 							</div>
 							<div>
-								<span>{user.followers ? user.followers : '0'}</span> подписчиков
-								· <span>{user.following ? user.following : '0'}</span> подписок
-								· <a href='#'>{dataUserPage.repos_url}</a>
+								<span>
+									{dataUserPage.followers ? dataUserPage.followers : '0'}
+								</span>{' '}
+								подписчиков ·{' '}
+								<span>
+									{dataUserPage.following ? dataUserPage.following : '0'}
+								</span>{' '}
+								подписок · <a href={dataUserPage.blog}>{dataUserPage.blog}</a>
 							</div>
 						</div>
 					</div>

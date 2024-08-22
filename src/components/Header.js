@@ -5,7 +5,7 @@ import { SearchInput } from './SearchBlock/SearchInput'
 
 export function Header() {
 	const { pathname } = useLocation()
-	const { dataUsers, searchValue, setsearchValue } = useContext(UserInfoContext)
+	const { dataUsers, searchValue } = useContext(UserInfoContext)
 	const [user, setUser] = useState(dataUsers)
 	const [info, setInfo] = useState('')
 
