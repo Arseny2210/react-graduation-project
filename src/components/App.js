@@ -16,12 +16,12 @@ function App() {
 
 	useEffect(() => {
 		const key = {
-			Authorization: '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',
+			Authorization: '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',
 		}
 		fetch('https://api.github.com/users', {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${key}`,
+				Authorization: `${key}`,
 			},
 		})
 			.then(res => res.json())
@@ -37,7 +37,7 @@ function App() {
 						return await fetch(url, {
 							method: 'GET',
 							headers: {
-								Authorization: `Bearer ${key}`,
+								Authorization: `${key}`,
 							},
 						}).then(res => res.json())
 					})
@@ -46,8 +46,6 @@ function App() {
 			.then(data => setDataUsers(data))
 			.catch(err => alert('ошибка запроса на сервер, попобуйте позднее'))
 	}, [])
-
-	console.log(dataUsers)
 
 	return (
 		<div className='wrapper'>

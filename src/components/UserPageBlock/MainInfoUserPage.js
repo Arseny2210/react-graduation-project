@@ -21,6 +21,8 @@ export function MainInfoUserPage({ dataUserPage }) {
 		return () => clearTimeout(timer)
 	}, [dataUserPage])
 
+	console.log(UserRepoz)
+
 	return (
 		<>
 			{loading ? <Loader /> : null}
@@ -30,7 +32,9 @@ export function MainInfoUserPage({ dataUserPage }) {
 						? UserRepoz.map(Repoz => (
 								<div key={Repoz.id} className='block-info'>
 									<div className='wrap-section-info'>
-										<a href='#'>{Repoz.name ? Repoz.name : 'Нет названия'}</a>
+										<a href={Repoz.html_url}>
+											{Repoz.name ? Repoz.name : 'Нет названия'}
+										</a>
 										<p>
 											{Repoz.description ? Repoz.description : 'Нет описания'}
 										</p>

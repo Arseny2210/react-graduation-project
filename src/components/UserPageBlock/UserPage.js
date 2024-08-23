@@ -13,12 +13,12 @@ export function UserPage() {
 	// переход на юезра с главной страницы
 	useEffect(() => {
 		const key = {
-			Authorization: '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',
+			Authorization: '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',
 		}
 		fetch('https://api.github.com/users/' + id, {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${key}`,
+				Authorization: `${key}`,
 			},
 		})
 			.then(res => res.json())
@@ -85,7 +85,7 @@ export function UserPage() {
 							<h1>РЕПОЗИТОРИИ</h1>
 						</div>
 						<div className='col text-lg-end'>
-							<a href=''>все репозитории</a>
+							<a href='#'>все репозитории</a>
 						</div>
 					</div>
 					<MainInfoUserPage dataUserPage={dataUserPage.repos_url} />
