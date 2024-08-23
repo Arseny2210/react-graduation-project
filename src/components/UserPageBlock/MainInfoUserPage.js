@@ -21,8 +21,6 @@ export function MainInfoUserPage({ dataUserPage }) {
 		return () => clearTimeout(timer)
 	}, [dataUserPage])
 
-	console.log(UserRepoz)
-
 	return (
 		<>
 			{loading ? <Loader /> : null}

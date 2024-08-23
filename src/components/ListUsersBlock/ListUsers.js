@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 export function ListUsers({ data }) {
-	console.log(data)
 	return (
 		<div className='col-12 col-sm-6 col-lg-4'>
 			<div className='p-3 d-flex felx-row align-items-center pl-2'>
