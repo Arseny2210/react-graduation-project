@@ -12,13 +12,13 @@ export function UserPage() {
 	const { dataUsers } = useContext(UserInfoContext)
 	// переход на юезра с главной страницы
 	useEffect(() => {
-		const headers = {
-			Authorization: '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',
+		const key = {
+			Authorization: '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',
 		}
 		fetch('https://api.github.com/users/' + id, {
 			method: 'GET',
 			headers: {
-				Authorization: { headers },
+				Authorization: `Bearer ${key}`,
 			},
 		})
 			.then(res => res.json())

@@ -13,13 +13,15 @@ export const UserInfoContext = createContext()
 function App() {
 	const [dataUsers, setDataUsers] = useState([])
 	const [searchValue, setSearchValue] = useState('')
-	const [users, setUsers] = useState([])
 
 	useEffect(() => {
+		const key = {
+			Authorization: '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',
+		}
 		fetch('https://api.github.com/users', {
 			method: 'GET',
 			headers: {
-				Authorization: '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',
+				Authorization: `Bearer ${key}`,
 			},
 		})
 			.then(res => res.json())
@@ -35,7 +37,7 @@ function App() {
 						return await fetch(url, {
 							method: 'GET',
 							headers: {
-								Authorization: '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',
+								Authorization: `Bearer ${key}`,
 							},
 						}).then(res => res.json())
 					})
